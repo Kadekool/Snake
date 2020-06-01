@@ -41,7 +41,7 @@ def main():
 
     spritecopy =[]
 
-    locations ={}
+    locations = set()
 
     s =Sprito()
     s.UpdateLocation(x_pos,y_pos)
@@ -145,11 +145,14 @@ def main():
         locations.clear()
         for i in range(0,len(sprites)):
             screen.blit(sprites[i].image,(sprites[i].getX(),sprites[i].getY()))
-            if(sprites[i].getX(),sprites[i].getY() not in locations):
-                locations[sprites[i].getX(),sprites[i].getY()]=i
+            temp = str(sprites[i].getX())
+            temp+= str(sprites[i].getY())
+            if(temp not in locations):
+                locations.add(temp)
             else:
                 running=False
-                break;
+                # print("here")
+                break
             if(i!=0):
                 sprites[i].UpdateLocation(spritecopy[i-1].getX(),spritecopy[i-1].getY())
 
